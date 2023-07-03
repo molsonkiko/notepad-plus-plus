@@ -1783,8 +1783,7 @@ size_t FileManager::docLength(Buffer* buffer) const
 void FileManager::addDisambiguatedBufferName(Buffer * newBuf)
 {
 
-	if (_pNotepadPlus != NULL && _pNotepadPlus->_isAttemptingCloseOnQuit // don't waste time recalculating buffer names when quitting
-		|| _isTransferringBuffersBetweenViews)
+	if (_pNotepadPlus != NULL && _pNotepadPlus->_isAttemptingCloseOnQuit) // don't waste time recalculating buffer names when quitting
 		return;
 	generic_string fileName = generic_string(newBuf->_fileName);
 	auto sameNameIterator = _bufferNameCollisions.find(fileName);
@@ -1811,8 +1810,7 @@ void FileManager::addDisambiguatedBufferName(Buffer * newBuf)
 //     set otherBuf's _disambiguatedFileName to its filename
 void FileManager::removeDisambiguatedBufferName(Buffer * oldBuf)
 {
-	if (_pNotepadPlus != NULL && _pNotepadPlus->_isAttemptingCloseOnQuit
-		|| _isTransferringBuffersBetweenViews)
+	if (_pNotepadPlus != NULL && _pNotepadPlus->_isAttemptingCloseOnQuit)
 		return;
 	generic_string fileName = generic_string(oldBuf->_fileName);
 	auto sameNameIterator = _bufferNameCollisions.find(fileName);

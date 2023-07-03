@@ -142,11 +142,6 @@ public:
 	}
 	void removeDisambiguatedBufferName(Buffer* oldBuf);
 	void addDisambiguatedBufferName(Buffer* newBuf);
-	bool getIsTransferringBuffersBetweenViews() const { return _isTransferringBuffersBetweenViews; }
-	void setIsTransferringBuffersBetweenViews(bool isTransferringBuffersBetweenViews)
-	{
-		_isTransferringBuffersBetweenViews = isTransferringBuffersBetweenViews;
-	}
 	
 private:
 	struct LoadedFileFormat {
@@ -181,9 +176,6 @@ private:
 	// if _bufferNameCollisions[name] contains a and b, a._fileName = name = b._fileName
 	std::unordered_map<generic_string, std::vector<Buffer *>> _bufferNameCollisions;
 	DisambiguationDuplicateFileNames _disambiguationType = DisambiguationFileNameOnly;
-	// buffers get opened and closed for various reasons during transfer between views
-	// but no buffers are closed or opened in total
-	bool _isTransferringBuffersBetweenViews = false;
 	void disambiguateBufferNames(std::vector<Buffer*>* buffers);
 	void recalculateDisambiguatedFilename(Buffer* buf);
 	void setDisambiguatedBufferNameAndUpdateTabBar(Buffer* buf, generic_string newDisambiguatedName);
